@@ -1,4 +1,31 @@
-const validISBN = (number: string) => { 
-    if (!/[0-9]{9}[X0-9]{1}/.test(number)) return false;
-    return (number.split('').map((d, i) => d === 'X' ? (10 * (i + 1)) : (d * (i + 1))).reduce((a, b) => a + b) % 11 === 0)
+export const validIsbn = (data: string) => {
+  let sum = 0;
+  if ((data.substring(data.length - 1, data.length)) === "X") {
+    for (let i = 0; i < data.length - 1; i++) {
+      sum = sum + (parseInt(data.substring(i, i + 1))) * (i + 1)
+    }
+
+    sum = sum + 10 * 10;
+    if (sum % 11 === 0) {
+      console.log("true")
+
+    } else {
+      console.log("false")
+    }
+
+  } else {
+    for (let i = 0; i < data.length; i++) {
+      sum = sum + (parseInt(data.substring(i, i + 1))) * (i + 1)
+    }
+    console.log(sum)
+
+    if (sum % 11 === 0) {
+      console.log("true") 
+        }
+        else {
+          console.log("false")
+        }
   }
+}
+validIsbn("1112223339");
+validIsbn("111222333");
